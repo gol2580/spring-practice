@@ -12,14 +12,35 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(value="com.project.partyMatching.userMapper.UserMapper", sqlSessionFactoryRef = "SqlSessionFactory")
+@EnableTransactionManagement
+@MapperScan(basePackages = "com.project.partyMatching.mapper")
 public class MyBatisConfig {
+
+    @Bean
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
+        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        bean.setDataSource(dataSource);
+        bean.setMapperLocations(resolver.getResources(
+                "classpath:/mapper/*.xml"
+        ));
+        return bean.getObject();
+    }
+
+    @Bean
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
+        return new SqlSessionTemplate(sqlSessionFactory);
+    }
+/*
+
     @Value("${spring.datasource.mapper-locations}")
     String mPath;
 
@@ -43,18 +64,22 @@ public class MyBatisConfig {
         return new SqlSessionTemplate(firstSqlSessionFactory);
     }
 
+*/
+    /*
+    private final ApplicationContext context;
 
-/*
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 
         sessionFactory.setDataSource(dataSource);
 
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sessionFactory.setMapperLocations(resolver.getResources(
-                "src/main/resources/mybatis/mapper/mapper.xml"
-        ));
+        sessionFactory.setMapperLocations(
+                context.getResources(
+                        "classpath:/mapper/*.xml"
+                )
+        );
+
 
         return sessionFactory.getObject();
     }
@@ -70,6 +95,6 @@ public class MyBatisConfig {
     @Bean
     public DataSourceTransactionManager transactionManager(DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
-    }
-*/
+    }*/
+
 }
