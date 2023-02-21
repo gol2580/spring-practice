@@ -7,4 +7,11 @@
         values("2","2","2")
     </select>
 
+    <!--로그인 하는 아이디, 비번 일치여부 판단, 아이디 넘김-->
+    <select id="loginCheck">
+        SELECT id FROM userInfo
+        <!--인자로 받은 dto의 변수 id, pw 사용-->
+        WHERE id=#{id} AND pw=#{pw}
+    </select>
+
 </mapper>
