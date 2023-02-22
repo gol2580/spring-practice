@@ -48,43 +48,35 @@
 <head>
     <title>Title</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
-    $(function(){
-    $("#btnLogin").click(function() {
-         var userId=$("#userID").val();
-         var userPW=$("#userPW").val();
+    $(document).ready(function(){
+        $("#btnLogin").click(function() {
+             var userId=$("#userID").val();
+             var userPW=$("#userPW").val();
 
-         if(userID == ""){
-              alert("아이디를 입력하세요");
-              $("#userID").focus(); //입력포커스 이동
-              return;  }
+             if(userID == ""){
+                  alert("아이디를 입력하세요");
+                  $("#userID").focus(); //입력포커스 이동
+                  return;  }
 
-        if(userPW==""){
-             alert("비밀번호를 입력하세요");
-             $("#userPW").focus();
-              return;  }
+            if(userPW==""){
+                 alert("비밀번호를 입력하세요");
+                 $("#userPW").focus();
+                  return;  }
 
-        <%--폼 내부의 데이터를 전송할 주소--%>
-        <%--login_check.do로 이동 -> @RequestMapping("login_check.do")메소드 실행--%>
-         document.loginForm.action= "${path}/member/login_check.do";
-         document.loginForm.submit();
-     });
+            <%--폼 내부의 데이터를 전송할 주소--%>
+            <%--login_check.do로 이동 -> @RequestMapping("login_check.do")메소드 실행--%>
+             document.loginForm.action= "${path}/member/login_check.do";
+             document.loginForm.submit();
+         });
     });
 </script
 <body>
 <div id="wrap">
-    <a href="index.jsp"><img id="homeIcon" src="classpath:/images/homeIcon.png"/></a>
-    <form action="charInExec.jsp" method="get" id="formDiv">
-        <div class="formIn">ID
-            <input name="userID" type="text"/>
-        </div>
-        <div class="formIn">PW
-            <input name="userPW" type="text"/>
-        </div>
-        <input type="submit"/>
-    </form>
+    <a href="index.jsp"><img id="homeIcon" src="classpath:/images/homeIcon.png"/></a>m>
 
-    <form name="loginForm" method="port">
+    <form name="loginForm" method="port" id="formDiv">
         <table class="formIn">
             <tr>
                 <td>ID</td>
