@@ -65,7 +65,7 @@
                  $("#userPW").focus();
                   return;  }
 
-            <%--폼 내부의 데이터를 전송할 주소--%>
+
             <%--login_check.do로 이동 -> @RequestMapping("login_check.do")메소드 실행--%>
              document.loginForm.action= "${path}/member/login_check.do";
              document.loginForm.submit();
