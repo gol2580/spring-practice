@@ -16,7 +16,5 @@ public class PartyMatchingApplication {
 
 	}
 
-	public void testBatis() throws Exception {
-		mapper.testInsert();
-	}
+
 }

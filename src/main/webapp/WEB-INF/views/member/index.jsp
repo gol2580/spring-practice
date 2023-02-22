@@ -59,6 +59,9 @@
 <body>
 <div id="wrap">
     <a href="index.jsp"><img id="homeicon" src="homeIcon.png"/></a>
+    <div id="loginID">
+        ${id}님 환영합니다.
+    </div>
     <div id="list">
         <li>
             <a class="items" href="characterIn.jsp">캐릭터입력</a>
