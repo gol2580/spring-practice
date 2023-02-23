@@ -58,7 +58,7 @@
 </head>
 <body>
 <div id="wrap">
-    <a href="index.jsp"><img id="homeicon" src="/images/homeIcon.png"/></a>
+    <a href="/home"><img id="homeicon" src="/images/homeIcon.png"/></a>
     <div id="loginID">
         ${id}님 환영합니다.
     </div>

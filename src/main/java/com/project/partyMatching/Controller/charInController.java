@@ -1,5 +1,6 @@
 package com.project.partyMatching.Controller;
 
+import com.project.partyMatching.dto.CharDTO;
 import com.project.partyMatching.dto.MemberDTO;
 import com.project.partyMatching.service.charInService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -24,8 +27,9 @@ public class charInController {
     }
 
     @RequestMapping("/charInExec.do")
-    public ModelAndView charInExec(@ModelAttribute MemberDTO dto) {
-        String nickname = charInService.charInExec(dto);
+    public ModelAndView charInExec(@ModelAttribute CharDTO dto, HttpSession session) {
+        charInService.charInExec(dto, session);
+        String nickname = dto.getNickname();
         ModelAndView mav = new ModelAndView();
 
         if(nickname!=null) {

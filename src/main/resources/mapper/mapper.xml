@@ -14,4 +14,10 @@
         WHERE id=#{ID} AND pw=#{PW}
     </select>
 
+    <select id="charIn">
+        INSERT INTO userchar
+        VALUES(#{ID}, #{nickname}, #{server}, #{level}, #{status}, #{force})
+
+    </select>
+
 </mapper>

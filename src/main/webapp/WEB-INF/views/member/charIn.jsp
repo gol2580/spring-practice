@@ -68,9 +68,9 @@
                   return;  }
 
 
-            <%--charIn.do로 이동 -> @RequestMapping("charIn.do")를 매핑한 메소드 실행--%>
-            <%--http://localhost:8080/charIn/charIn.do--%>
-             document.charInForm.action= "${path}/charIn/charIn.do";
+            <%--charIn.do로 이동 -> @RequestMapping("charExec.do")를 매핑한 메소드 실행--%>
+            <%--http://localhost:8080/charIn/charInExec.do?nickname=gol&selectServer=%EB%A3%A8%EB%82%98&level=1&status=1&force=1--%>
+             document.charInForm.action= "${path}/charIn/charInExec.do";
              document.charInForm.submit();
          });
     });
@@ -81,7 +81,7 @@
          <div style="color:red;"> 로그아웃 되었습니다.</div>
 </c:if>--%>
 <div id="wrap">
-    <a href="index.jsp"><img id="homeicon" src="/images/homeIcon.png"/></a>
+    <a href="/home"><img id="homeicon" src="/images/homeIcon.png"/></a>
 
 
 
@@ -91,9 +91,9 @@
                 <input name="nickname" id="nickname" type="text"/>
             </div>
             <div class="formIn"> 서버 선택
-                <input id="selectServer" name="selectServer" type="radio" value="루나"/>루나
-                <input id="selectServer" name="selectServer" type="radio" value="스카니아"/>스카니아
-                <input id="selectServer" name="selectServer" type="radio" value="엘리시움"/>엘리시움
+                <input id="server" name="server" type="radio" value="루나"/>루나
+                <input id="server" name="server" type="radio" value="스카니아"/>스카니아
+                <input id="server" name="server" type="radio" value="엘리시움"/>엘리시움
             </div>
             <div class="formIn"> 레벨 입력
                 <input id="level" name="level" type="number" min="0" max="300"/>

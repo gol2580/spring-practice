@@ -76,7 +76,7 @@
 </script>
 <body>
 <div id="wrap">
-    <a href="index.jsp"><img id="homeIcon" src="/images/homeIcon.png"/></a>m>
+    <a href="/home"><img id="homeIcon" src="/images/homeIcon.png"/></a>m>
 
     <form name="loginForm" method="port" id="formDiv">
         <table class="formIn">

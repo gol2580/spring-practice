@@ -11,4 +11,5 @@ public interface UserMapper {
 
     public void testInsert();
     public String loginCheck(MemberDTO dto);
+    public void charIn(MemberDTO dto);
 }

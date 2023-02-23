@@ -20,7 +20,7 @@ public class loginServiceImpl  implements loginService{
         String ID = memberDAO.loginCheck(dto);
         System.out.println("ID = " + ID);
         //HttpSession 유지위한 세션변수 저장
-        if(ID!=null) { session.setAttribute("userID", dto.getID()); }
+        if(ID!=null) { session.setAttribute("ID", dto.getID()); }
         return ID;
     }
 

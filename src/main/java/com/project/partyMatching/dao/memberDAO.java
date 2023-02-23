@@ -9,5 +9,4 @@ public interface memberDAO {
     public MemberDTO viewMember(MemberDTO dto);
     public void logout(HttpSession session);
 
-    public String charInExec(MemberDTO dto);
 }
