@@ -8,10 +8,10 @@
     </select>
 
     <!--로그인 하는 아이디, 비번 일치여부 판단, 아이디 넘김-->
-    <select id="loginCheck">
+    <!--인자로 받은 dto의 변수 id, pw 사용-->
+    <select id="loginCheck" resultType="String">
         SELECT id FROM userInfo
-        <!--인자로 받은 dto의 변수 id, pw 사용-->
-        WHERE id=#{id} AND pw=#{pw}
+        WHERE id=#{ID} AND pw=#{PW}
     </select>
 
 </mapper>

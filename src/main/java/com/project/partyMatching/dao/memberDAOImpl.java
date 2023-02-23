@@ -15,7 +15,11 @@ public class memberDAOImpl implements memberDAO{
 
     @Override
     public String loginCheck(MemberDTO dto) {
-        //sql문 호출, 인자전달  -->  serviceImpl에서 호출
+        //serviceImple에서 호출했음 -> sql문 호출, 인자(dto)전달
+        System.out.println("DAO calling success");
+        String searchID = dto.getID(); String searchPW = dto.getPW();
+        System.out.println("searchID = " + searchID);
+        System.out.println("searchPW = " + searchPW);
         return sqlSession.selectOne(
                 "com.project.partyMatching.mapper.UserMapper.loginCheck"
         , dto);

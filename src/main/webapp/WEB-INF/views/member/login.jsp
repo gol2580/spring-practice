@@ -52,21 +52,23 @@
 <script>
     $(document).ready(function(){
         $("#btnLogin").click(function() {
-             var userId=$("#userID").val();
-             var userPW=$("#userPW").val();
+            <%--id가 ID인 input의 값--%>
+             var userID=$("input#ID").val();
+             var userPW=$("input#PW").val();
 
              if(userID == ""){
                   alert("아이디를 입력하세요");
-                  $("#userID").focus(); //입력포커스 이동
+                  $("input#ID").focus(); //입력포커스 이동
                   return;  }
 
             if(userPW==""){
                  alert("비밀번호를 입력하세요");
-                 $("#userPW").focus();
+                 $("input#PW").focus();
                   return;  }
 
 
             <%--login_check.do로 이동 -> @RequestMapping("login_check.do")메소드 실행--%>
+            <%--http://localhost:8080/member/login_check.do?userId=gol2580&userPW=1234--%>
              document.loginForm.action= "${path}/member/login_check.do";
              document.loginForm.submit();
          });
@@ -80,19 +82,21 @@
         <table class="formIn">
             <tr>
                 <td>ID</td>
-                <td><input type="userId" name="userId">
+                <td><input type="text" name="ID" id="ID">
             </tr>
             <tr>
                 <td>PW</td>
-                <td><input type="password" name="userPW" id="userPW"></td>
+                <td><input type="password" name="PW" id="PW"></td>
             </tr>
             <tr>
                 <td align="center">
                 <button type="button" id="btnLogin">로그인</button>
                 <c:if test="${msg == 'error'}">
                     <div style="color:red;">아이디와 비밀번호가 일치하지 않습니다.</div>
+                </c>
                 <c:if test="${msg == 'logout'}">
                     <div style="color:red;"> 로그아웃 되었습니다.</div>
+                </c>
             </tr>
         </table>
     </form>

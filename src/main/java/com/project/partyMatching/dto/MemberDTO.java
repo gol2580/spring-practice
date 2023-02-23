@@ -2,8 +2,8 @@ package com.project.partyMatching.dto;
 
 public class MemberDTO {
 
-    private String id;
-    private String password;
+    private String ID;
+    private String PW;
     private String server;
     private int level;
     private int status;
@@ -15,20 +15,20 @@ public class MemberDTO {
     private int party_W;
     private int party_H;
 
-    public String getId() {
-        return id;
+    public String getID() {
+        return ID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPW() {
+        return PW;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPW(String password) {
+        this.PW = password;
     }
 
 
