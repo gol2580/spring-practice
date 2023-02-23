@@ -34,4 +34,12 @@ public class memberDAOImpl implements memberDAO{
 
     @Override
     public void logout(HttpSession session) { }
+
+    @Override
+    public String charInExec(MemberDTO dto) {
+        //query문 바꾸기
+        return sqlSession.selectOne(
+                "com.project.partyMatching.mapper.UserMapper.loginCheck"
+                , dto);
+    }
 }

@@ -58,13 +58,13 @@
 </head>
 <body>
 <div id="wrap">
-    <a href="index.jsp"><img id="homeicon" src="homeIcon.png"/></a>
+    <a href="index.jsp"><img id="homeicon" src="/images/homeIcon.png"/></a>
     <div id="loginID">
         ${id}님 환영합니다.
     </div>
     <div id="list">
         <li>
-            <a class="items" href="characterIn.jsp">캐릭터입력</a>
+            <a class="items" href="/charIn/charIn.do">캐릭터입력</a>
         </li>
         <li>
             <a class="items" href="showChar.jsp">캐릭터보기</a>
@@ -82,7 +82,7 @@
             <a class="items" href="serverNow.jsp">서버별현황</a>
         </li>
     </div>
-    <img id="avatar" src="avatar1.png"/>
+    <img id="avatar" src="/images/avatar1.png"/>
 </div>
 </body>
 </html>

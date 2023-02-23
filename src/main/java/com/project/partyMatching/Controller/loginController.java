@@ -18,31 +18,30 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/member/*")
 @Controller
 public class loginController {
-    private Logger log = LoggerFactory.getLogger(getClass());
     @Autowired
     loginService loginService;
 
     //클라이언트가 요청할 경로
     // http://localhost:8080/member/login.do
    @RequestMapping("login.do")
-    // /view/member/login.jsp로 이동
     public String login() {
         System.out.println("login()까지는 호출함");
         //Controller 클래스의 메소드 : String return값이 view의 이름으로 사용됨
+       // /views/member/login.jsp로 이동
         return "/member/login";
     }
 
     @RequestMapping("login_check.do")
     //http://localhost:8080/member/login_check.do?ID=gol2580&PW=1234 형태로 넘겨받음
-    //GET방식으로 받은 parameter가 Member 객체의 동일이름 변수에 매핑됨 : 이름 주의!!
+    //GET방식으로 받은 parameter가 Member 객체의 동일이름 변수에 매핑됨(setter사용) : 이름 주의!!
     public ModelAndView loginCheck(@ModelAttribute MemberDTO dto, HttpSession session) {
         String id = loginService.loginCheck(dto, session);
         System.out.println("query execution success");
         System.out.println("id = " + id);
         ModelAndView mav = new ModelAndView();
         if(id!=null) {
-            // /view/member/index.jsp로 이동
-            mav.setViewName("/member/index"); //로그인 성공 시 뷰의 이름
+            // /views/index.jsp로 이동
+            mav.setViewName("/index"); //로그인 성공 시 뷰의 이름
             mav.addObject("id",id);
             mav.addObject("msg","success");
         } else { //로그인 실패

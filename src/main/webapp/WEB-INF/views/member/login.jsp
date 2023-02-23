@@ -15,7 +15,7 @@
         height:100%;
         position:relative;
     }
-    #homeicon{
+    #homeIcon{
         width: 83px;
         height: 77px;
         position: absolute;
@@ -73,10 +73,10 @@
              document.loginForm.submit();
          });
     });
-</script
+</script>
 <body>
 <div id="wrap">
-    <a href="index.jsp"><img id="homeIcon" src="classpath:/images/homeIcon.png"/></a>m>
+    <a href="index.jsp"><img id="homeIcon" src="/images/homeIcon.png"/></a>m>
 
     <form name="loginForm" method="port" id="formDiv">
         <table class="formIn">
@@ -93,10 +93,10 @@
                 <button type="button" id="btnLogin">로그인</button>
                 <c:if test="${msg == 'error'}">
                     <div style="color:red;">아이디와 비밀번호가 일치하지 않습니다.</div>
-                </c>
+                </c:if>
                 <c:if test="${msg == 'logout'}">
                     <div style="color:red;"> 로그아웃 되었습니다.</div>
-                </c>
+                </c:if>
             </tr>
         </table>
     </form>

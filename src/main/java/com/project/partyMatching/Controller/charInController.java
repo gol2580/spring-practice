@@ -1,0 +1,44 @@
+package com.project.partyMatching.Controller;
+
+import com.project.partyMatching.dto.MemberDTO;
+import com.project.partyMatching.service.charInService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+
+@Controller
+@RequestMapping("/charIn/*")
+public class charInController {
+
+    @Autowired
+    charInService charInService;
+
+    //클라이언트 주소 : http://localhost:8080/charIn/charIn.do
+    @RequestMapping("/charIn.do")
+    public String charIn() {
+        // views/member/charIn.jsp로 이동
+        return "/member/charIn";
+    }
+
+    @RequestMapping("/charInExec.do")
+    public ModelAndView charInExec(@ModelAttribute MemberDTO dto) {
+        String nickname = charInService.charInExec(dto);
+        ModelAndView mav = new ModelAndView();
+
+        if(nickname!=null) {
+            mav.addObject("nickname",nickname);
+            mav.setViewName("/index");
+        } else {
+            mav.addObject("nickname","error");
+            //뷰이동X, error인 경우 alert 띄우기
+            mav.setViewName("/member/charIn");
+        }
+        return mav;
+    }
+
+
+
+}
