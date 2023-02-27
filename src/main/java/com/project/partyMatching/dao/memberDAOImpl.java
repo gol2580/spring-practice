@@ -29,7 +29,5 @@ public class memberDAOImpl implements memberDAO{
     }
 
     @Override
-    public void logout(HttpSession session) {
-
-    }
+    public void logout(HttpSession session) { }
 }

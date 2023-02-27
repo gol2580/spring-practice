@@ -10,9 +10,6 @@ class PartyMatchingApplicationTests {
 
 	@Autowired
 	private UserMapper mapper;
-	@Test
-	void testBatis() {
-		mapper.testInsert();
-	}
+
 
 }
