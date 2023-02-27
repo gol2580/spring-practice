@@ -31,7 +31,7 @@ public class charInController {
         charInService.charInExec(dto, session);
         String nickname = dto.getNickname();
         ModelAndView mav = new ModelAndView();
-
+        //로그인 안 했을 경우의 예외처리 필요!!
         if(nickname!=null) {
             mav.addObject("nickname",nickname);
             mav.setViewName("/index");

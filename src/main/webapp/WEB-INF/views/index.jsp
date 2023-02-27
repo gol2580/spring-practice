@@ -67,7 +67,7 @@
             <a class="items" href="/charIn/charIn.do">캐릭터입력</a>
         </li>
         <li>
-            <a class="items" href="showChar.jsp">캐릭터보기</a>
+            <a class="items" href="/showChar/showChar.do">캐릭터보기</a>
         </li>
         <li>
             <a class="items" href="specificationIn.jsp">스펙등록</a>

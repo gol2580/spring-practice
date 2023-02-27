@@ -20,4 +20,8 @@
 
     </select>
 
+    <select id="showChar" resultType="Map">
+        SELECT nickname, server, level, status, arcforce FROM userchar
+    </select>
+
 </mapper>
