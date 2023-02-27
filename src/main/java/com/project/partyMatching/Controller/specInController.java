@@ -31,6 +31,8 @@ public class specInController {
             specInService.specInExec(dto, session);
             ModelAndView mav = new ModelAndView();
             //로그인 안 했을 경우의 예외처리 필요!!
+            mav.setViewName("/index");
+            mav.addObject("id",session.getAttribute("ID"));
 
             return mav;
         }

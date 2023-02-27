@@ -104,7 +104,7 @@
             <div class="formIn"> 포스 입력
                 <input id="force" name="force" type="number" min="0" max="1320"/>
             </div>
-            <button type="button" id="btnCharIn">로그인</button>
+            <button type="button" id="btnCharIn">등록</button>
         </table>
     </form>
 </div>
