@@ -70,16 +70,13 @@
             <a class="items" href="/showChar/showChar.do">캐릭터보기</a>
         </li>
         <li>
-            <a class="items" href="specificationIn.jsp">스펙등록</a>
+            <a class="items" href="/specIn/specIn.do">스펙등록</a>
         </li>
         <li>
             <a class="items" href="doMatching.jsp">파티매칭</a>
         </li>
         <li>
             <a class="items" href="showParty.jsp">파티보기</a>
-        </li>
-        <li>
-            <a class="items" href="serverNow.jsp">서버별현황</a>
         </li>
     </div>
     <img id="avatar" src="/images/avatar1.png"/>

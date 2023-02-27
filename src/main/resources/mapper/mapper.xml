@@ -17,11 +17,15 @@
     <select id="charIn">
         INSERT INTO userchar
         VALUES(#{ID}, #{nickname}, #{server}, #{level}, #{status}, #{force})
-
     </select>
 
     <select id="showChar" resultType="Map">
         SELECT nickname, server, level, status, arcforce FROM userchar
+    </select>
+
+    <select id="specIn">
+        INSERT INTO specification
+        VALUES(#{leaderName},#{bossName},#{numOfChar},#{sserver},#{minLevel},#{minStatus},#{minForce})
     </select>
 
 </mapper>
