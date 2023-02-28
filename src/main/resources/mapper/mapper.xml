@@ -35,8 +35,70 @@
         FROM specification
     </select>
 
-    <select id="getMatchingChar" resultType="Map">
-
+    <!--일단 dto에 leaderName, bossName, numOfChar 얻어냈다고 가정하고 쿼리작성-->
+    <select id="getMatching_L" resultType="Map">
+        select e.nickname
+        from ( select *
+            from userchar u, specification s
+            where u.server = s.SSERVER
+            AND s.leaderName=#{leaderName}
+            AND u.STATUS >= s.minStatus
+            AND u.LEVEL >= s.minLevel
+            AND u.ARCFORCE >=s.minForce ) a, char_party_ex e
+        where e.nickname=a.nickname
+        AND e.party_L=\"0\" LIMIT ${numOfChar}
+    </select>
+    <select id="getMatching_Du" resultType="Map">
+        select e.nickname
+        from ( select *
+        from userchar u, specification s
+        where u.server = s.SSERVER
+        AND s.leaderName=#{leaderName}
+        AND u.STATUS >= s.minStatus
+        AND u.LEVEL >= s.minLevel
+        AND u.ARCFORCE >=s.minForce ) a, char_party_ex e
+        where e.nickname=a.nickname
+        AND e.party_Du=\"0\" LIMIT ${numOfChar}
+    </select>
+    <select id="getMatching_De" resultType="Map">
+        select e.nickname
+        from ( select *
+        from userchar u, specification s
+        where u.server = s.SSERVER
+        AND s.leaderName=#{leaderName}
+        AND u.STATUS >= s.minStatus
+        AND u.LEVEL >= s.minLevel
+        AND u.ARCFORCE >=s.minForce ) a, char_party_ex e
+        where e.nickname=a.nickname
+        AND e.party_De=\"0\" LIMIT ${numOfChar}
+    </select>
+    <select id="getMatching_W" resultType="Map">
+        select e.nickname
+        from ( select *
+        from userchar u, specification s
+        where u.server = s.SSERVER
+        AND s.leaderName=#{leaderName}
+        AND u.STATUS >= s.minStatus
+        AND u.LEVEL >= s.minLevel
+        AND u.ARCFORCE >=s.minForce ) a, char_party_ex e
+        where e.nickname=a.nickname
+        AND e.party_W=\"0\" LIMIT ${numOfChar}
+    </select>
+    <select id="getMatching_H" resultType="Map">
+        select e.nickname
+        from ( select *
+        from userchar u, specification s
+        where u.server = s.SSERVER
+        AND s.leaderName=#{leaderName}
+        AND u.STATUS >= s.minStatus
+        AND u.LEVEL >= s.minLevel
+        AND u.ARCFORCE >=s.minForce ) a, char_party_ex e
+        where e.nickname=a.nickname
+        AND e.party_H=\"0\" LIMIT ${numOfChar}
+    </select>
+    <!--party_L부분은 파티장이름, nickname은 각 파티원이름-->
+    <select id="updatePC_L" parameterType="Map">
+        update char_party_ex set party_L=#{leaderName} where nickname=#{nickname}
     </select>
 
 </mapper>
