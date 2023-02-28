@@ -74,7 +74,7 @@
              document.charInForm.submit();
          });
     });
-</script
+</script>
 
 <body>
 <%--<c:if test="${nickname == 'error'}">

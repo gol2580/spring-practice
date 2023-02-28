@@ -17,4 +17,7 @@ public interface UserMapper {
     public void charIn(MemberDTO dto);
     public Map showChar();
     public void specIn(SpecDTO dto);
+    public Map showSpec();
+
+    public Map getMatchingChar(SpecDTO dto);
 }

@@ -16,7 +16,9 @@
 
     <select id="charIn">
         INSERT INTO userchar
-        VALUES(#{ID}, #{nickname}, #{server}, #{level}, #{status}, #{force})
+        VALUES(#{ID}, #{nickname}, #{server}, #{level}, #{status}, #{force});
+        INSERT INTO char_party_ex
+        VALUES (#{nickname},"0","0","0","0","0")
     </select>
 
     <select id="showChar" resultType="Map">
@@ -26,6 +28,15 @@
     <select id="specIn">
         INSERT INTO specification
         VALUES(#{leaderName},#{bossName},#{numOfChar},#{sserver},#{minLevel},#{minStatus},#{minForce})
+    </select>
+
+    <select id="showSpec" resultType="Map">
+        SELECT leaderName,bossName, numOfChar, sserver, minLevel, minStatus, minForce
+        FROM specification
+    </select>
+
+    <select id="getMatchingChar" resultType="Map">
+
     </select>
 
 </mapper>

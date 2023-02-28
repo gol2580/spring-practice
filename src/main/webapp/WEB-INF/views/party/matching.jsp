@@ -50,11 +50,20 @@
 </head>
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#btnMatching").click(function() {
+             document.matchingForm.action= "${path}/matching/matchingExec.do";
+            document.matchingForm.submit();
+         });
+    });
+</script>
+
 <body>
     <div id="wrap">
         <a href="/home"><img id="homeicon" src="/images/homeIcon.png"/></a>
-        <h1>사용자 목록</h1>
         <table id="table">
+        <form name="matchingForm" method="get" id="matchingForm">
             <thead>
                 <tr>
                     <th>보스</th>
@@ -63,12 +72,13 @@
                     <th>레벨</th>
                     <th>스텟</th>
                     <th>포스</th>
+                    <th>버튼</th>
                 </tr>
             </thead>
             <tbody>
                 <c:choose>
-                    <c:when test="${fn:length(userList) !=0 }">
-                        <c:forEach var="item" items="${userList}" varStatus="status">
+                    <c:when test="${fn:length(specList) !=0 }">
+                        <c:forEach var="item" items="${specList}" varStatus="status">
                                 <tr>
                                     <td><c:out value="${item.bossName}" /></td>
                                     <td><c:out value="${item.numOfChar}" /></td>
@@ -76,7 +86,9 @@
                                     <td><c:out value="${item.minLevel}" /></td>
                                     <td><c:out value="${item.minStatus}" /></td>
                                     <td><c:out value="${item.minForce}" /></td>
-                                    <td>button type="button" id="btnMatching">로그인</button></td>
+                                    <td>
+                                        <button type="submit" value="${item.leaderName}" id="btnMatching" name="leaderName">GO</button>
+                                    </td>
                                 </tr>
                         </c:forEach>
                     </c:when>
@@ -87,6 +99,7 @@
                     </c:otherwise>
                 </c:choose>
             </tbody>
+        </form>
         </table>
     </div>
 </body>
