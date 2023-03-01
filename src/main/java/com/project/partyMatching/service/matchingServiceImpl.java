@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +28,16 @@ public class matchingServiceImpl implements matchingService{
     }
 
     @Override
-    public void matchingExec(SpecDTO dto) {
-        specDAO.matchingExec(dto);
+    public Map<String, Object> matchingExec(SpecDTO dto) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        System.out.println("leadName = "+dto.getLeaderName());
+        System.out.println("bossName = "+dto.getBossName());
+        specDAO.getSpec(dto);
+        map.put("server",dto.getSserver());
+        //leaderName, bossName, numOfChar, userArray, server를 담은 map을 반환
+        map = specDAO.getUserList(dto);
+        specDAO.updateCP(map);
+        specDAO.updateP(map);
+        return map;
     }
 }

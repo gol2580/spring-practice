@@ -34,9 +34,19 @@ public class matchingController {
 
     //http://localhost:8080/matching/matchingExec.do?leaderName=bv
     @RequestMapping("matchingExec.do")
-    public ModelAndView matchingExec(@ModelAttribute SpecDTO dto, HttpSession session) {
-        matchingService.matchingExec(dto);
+    public ModelAndView matchingExec(@ModelAttribute SpecDTO dto) {
+        Map<String,Object> map = matchingService.matchingExec(dto);
         ModelAndView mav = new ModelAndView();
+        if(map.get("userArray")!=null) {
+            mav.addObject("leaderName",map.get("leaderName"));
+            mav.addObject("bossName",map.get("bossName"));
+            mav.addObject("server",map.get("server"));
+            mav.addObject("userArray",map.get("userArray"));
+            mav.addObject("success","success");
+        } else {
+            mav.addObject("error","error");
+        }
+        mav.setViewName("party/matching");
         return mav;
     }
 

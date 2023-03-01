@@ -8,5 +8,5 @@ import java.util.Map;
 
 public interface matchingService {
     public List<Map<String, Object>> showParty(HttpSession session);
-    public void matchingExec(SpecDTO dto);
+    public Map<String, Object> matchingExec(SpecDTO dto);
 }

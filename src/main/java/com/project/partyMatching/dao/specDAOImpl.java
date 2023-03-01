@@ -5,10 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class specDAOImpl implements specDAO{
@@ -50,5 +47,64 @@ public class specDAOImpl implements specDAO{
                 break;
         }
 
+    }
+
+    @Override
+    public Map<String, Object> getUserList(SpecDTO dto) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("leaderName",dto.getLeaderName());
+        String bossName = dto.getBossName();
+        map.put("bossName",dto.getBossName());
+        map.put("numOfChar",dto.getNumOfChar());
+        //leaderName, bossName, numOfChar, userArray를 담은 map을 반환
+        switch (bossName) {
+            case "루시드" :
+                map.put("userArray",sqlSession.selectList("com.project.partyMatching.mapper.UserMapper.getMatching_L",map));
+                break;
+            case "데미안" :
+                map.put("userArray",sqlSession.selectList("com.project.partyMatching.mapper.UserMapper.getMatching_L",map));
+                break;
+            case "듄켈" :
+                map.put("userArray",sqlSession.selectList("com.project.partyMatching.mapper.UserMapper.getMatching_L",map));
+                break;
+            case "윌" :
+                map.put("userArray",sqlSession.selectList("com.project.partyMatching.mapper.UserMapper.getMatching_L",map));
+                break;
+            case "힐라" :
+                map.put("userArray",sqlSession.selectList("com.project.partyMatching.mapper.UserMapper.getMatching_L",map));
+                break;
+        }
+        return map;
+    }
+
+    @Override
+    public void updateCP(Map<String, Object> map) {
+        switch ((String)map.get("bossName")) {
+            case "루시드" :
+                sqlSession.selectOne("com.project.partyMatching.mapper.UserMapper.updatePC_L",map);
+                break;
+            case "데미안" :
+                sqlSession.selectOne("com.project.partyMatching.mapper.UserMapper.updatePC_De",map);
+                break;
+            case "듄켈" :
+                sqlSession.selectOne("com.project.partyMatching.mapper.UserMapper.updatePC_Du",map);
+                break;
+            case "윌" :
+                sqlSession.selectOne("com.project.partyMatching.mapper.UserMapper.updatePC_W",map);
+                break;
+            case "힐라" :
+                sqlSession.selectOne("com.project.partyMatching.mapper.UserMapper.updatePC_H",map);
+                break;
+        }
+    }
+
+    @Override
+    public void getSpec(SpecDTO dto) {
+        sqlSession.selectOne("com.project.partyMatching.mapper.UserMapper.getSpec",dto);
+    }
+
+    @Override
+    public void updateP(Map<String, Object> map) {
+        sqlSession.selectOne("updateP",map);
     }
 }

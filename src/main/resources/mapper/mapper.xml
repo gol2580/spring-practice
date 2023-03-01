@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.partyMatching.mapper.UserMapper">
 
+
     <select id="testInsert" >
         insert into partytest
         values("2","2","2")
@@ -35,8 +36,17 @@
         FROM specification
     </select>
 
+    <select id="getSpec">
+        SELECT s.numOfChar, s.sserver
+        FROM specification s
+        WHERE leaderName=#{leaderName} AND bossName=#{bossName}";
+
+
+    </select>
+
     <!--일단 dto에 leaderName, bossName, numOfChar 얻어냈다고 가정하고 쿼리작성-->
-    <select id="getMatching_L" resultType="Map">
+    <!--map의 key값으로 대응시키면 됨-->
+    <select id="getMatching_L" parameterType="Map" resultType="List">
         select e.nickname
         from ( select *
             from userchar u, specification s
@@ -48,7 +58,7 @@
         where e.nickname=a.nickname
         AND e.party_L=\"0\" LIMIT ${numOfChar}
     </select>
-    <select id="getMatching_Du" resultType="Map">
+    <select id="getMatching_Du" parameterType="Map" resultType="List">
         select e.nickname
         from ( select *
         from userchar u, specification s
@@ -60,7 +70,7 @@
         where e.nickname=a.nickname
         AND e.party_Du=\"0\" LIMIT ${numOfChar}
     </select>
-    <select id="getMatching_De" resultType="Map">
+    <select id="getMatching_De" parameterType="Map" resultType="List">
         select e.nickname
         from ( select *
         from userchar u, specification s
@@ -72,7 +82,7 @@
         where e.nickname=a.nickname
         AND e.party_De=\"0\" LIMIT ${numOfChar}
     </select>
-    <select id="getMatching_W" resultType="Map">
+    <select id="getMatching_W" parameterType="Map" resultType="List">
         select e.nickname
         from ( select *
         from userchar u, specification s
@@ -84,7 +94,7 @@
         where e.nickname=a.nickname
         AND e.party_W=\"0\" LIMIT ${numOfChar}
     </select>
-    <select id="getMatching_H" resultType="Map">
+    <select id="getMatching_H" parameterType="Map" resultType="List">
         select e.nickname
         from ( select *
         from userchar u, specification s
@@ -98,7 +108,42 @@
     </select>
     <!--party_L부분은 파티장이름, nickname은 각 파티원이름-->
     <select id="updatePC_L" parameterType="Map">
-        update char_party_ex set party_L=#{leaderName} where nickname=#{nickname}
+        <foreach collection="userArray" item="item" separator=";">
+        UPDATE char_party_ex 
+        SET party_L=#{item.leaderName}
+        WHERE nickname=#{item.nickname}
+        </foreach>
     </select>
 
+    <select id="updatePC_De" parameterType="Map">
+        <foreach collection="userArray" item="item" separator=";">
+            UPDATE char_party_ex
+            SET party_De=#{item.leaderName}
+            WHERE nickname=#{item.nickname}
+        </foreach>
+    </select>
+    <select id="updatePC_Du" parameterType="Map">
+        <foreach collection="userArray" item="item" separator=";">
+            UPDATE char_party_ex
+            SET party_Du=#{item.leaderName}
+            WHERE nickname=#{item.nickname}
+        </foreach>
+    </select>
+    <select id="updatePC_W" parameterType="Map">
+        <foreach collection="userArray" item="item" separator=";">
+            UPDATE char_party_ex
+            SET party_W=#{item.leaderName}
+            WHERE nickname=#{item.nickname}
+        </foreach>
+    </select>
+    <select id="updatePC_H" parameterType="Map">
+        <foreach collection="userArray" item="item" separator=";">
+            UPDATE char_party_ex
+            SET party_H=#{item.leaderName}
+            WHERE nickname=#{item.nickname}
+        </foreach>
+    </select>
+    <select id="updateP" parameterType="Map">
+        insert into partytest values(#{leaderName},#{bossName},#{server})";
+    </select>
 </mapper>

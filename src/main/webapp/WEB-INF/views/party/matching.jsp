@@ -53,13 +53,27 @@
 <script>
     $(document).ready(function(){
         $("#btnMatching").click(function() {
-             document.matchingForm.action= "${path}/matching/matchingExec.do";
+            var input1 = document.createElement('input');
+            var bossName = $("td#bossName").text();
+            input1.setAttribute("bossName", bossName)
+            $("#matchingForm").append(input1);
+
+
+            document.matchingForm.action= "${path}/matching/matchingExec.do";
             document.matchingForm.submit();
          });
     });
 </script>
 
 <body>
+    <c:choose>
+        <c:when test="${success=='success'}">
+            alert("매칭에 성공했습니다! ${userArray} \n ${server}서버 \n ${bossName}" )
+        </c:when>
+        <c:when test="${error=='error'}">
+            alert("매칭에 실패했습니다. 조건에 해당하는 파티원이 존재하지 않습니다.")
+        </c:when>
+    </c:choose>
     <div id="wrap">
         <a href="/home"><img id="homeicon" src="/images/homeIcon.png"/></a>
         <table id="table">
@@ -80,9 +94,9 @@
                     <c:when test="${fn:length(specList) !=0 }">
                         <c:forEach var="item" items="${specList}" varStatus="status">
                                 <tr>
-                                    <td><c:out value="${item.bossName}" /></td>
-                                    <td><c:out value="${item.numOfChar}" /></td>
-                                    <td><c:out value="${item.sserver}" /></td>
+                                    <td id="bossName"><c:out value="${item.bossName}" /></td>
+                                    <td id="numOfChar"><c:out value="${item.numOfChar}" /></td>
+                                    <td id="sserver"><c:out value="${item.sserver}" /></td>
                                     <td><c:out value="${item.minLevel}" /></td>
                                     <td><c:out value="${item.minStatus}" /></td>
                                     <td><c:out value="${item.minForce}" /></td>
