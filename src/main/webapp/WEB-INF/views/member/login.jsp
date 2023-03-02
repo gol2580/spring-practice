@@ -48,7 +48,10 @@
 <head>
     <title>Title</title>
 </head>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 <script>
     $(document).ready(function(){
         $("#btnLogin").click(function() {

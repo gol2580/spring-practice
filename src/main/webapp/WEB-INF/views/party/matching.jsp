@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@page import="java.net.URLEncoder"%>
+<% request.setCharacterEncoding("utf-8"); %>
 
 <style type="text/css">
     <!--
@@ -43,9 +43,10 @@
 
     -->
 </style>
-
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Title</title>
 </head>
 
@@ -53,14 +54,31 @@
 <script>
     $(document).ready(function(){
         $("#btnMatching").click(function() {
-            var input1 = document.createElement('input');
-            var bossName = $("td#bossName").text();
-            input1.setAttribute("bossName", bossName)
-            $("#matchingForm").append(input1);
+            var url='${path}/matching/matchingExec.do';
+            var var1 =$("#btnMatching").val();
+            var var2 =$("#bossName").val();
+            let param = {'leaderName':var1, 'bossName':var2};
+
+            alert(JSON.stringify(param));
+
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: JSON.stringify(param),
+                dataType: 'json',
+                processData: false,
+                contentType:'application/json; charset:UTF-8',
+                success: function () {
+                    console.log("completed!");
+                },
+                error: function () {
+                    alert("failed! ")
+
+                }
+            });
 
 
-            document.matchingForm.action= "${path}/matching/matchingExec.do";
-            document.matchingForm.submit();
+
          });
     });
 </script>
@@ -77,7 +95,6 @@
     <div id="wrap">
         <a href="/home"><img id="homeicon" src="/images/homeIcon.png"/></a>
         <table id="table">
-        <form name="matchingForm" method="get" id="matchingForm">
             <thead>
                 <tr>
                     <th>보스</th>
@@ -94,14 +111,14 @@
                     <c:when test="${fn:length(specList) !=0 }">
                         <c:forEach var="item" items="${specList}" varStatus="status">
                                 <tr>
-                                    <td id="bossName"><c:out value="${item.bossName}" /></td>
-                                    <td id="numOfChar"><c:out value="${item.numOfChar}" /></td>
-                                    <td id="sserver"><c:out value="${item.sserver}" /></td>
+                                    <td><input type="hidden" id="bossName" value="${item.bossName}"/><c:out value="${item.bossName}" /></td>
+                                    <td><c:out value="${item.numOfChar}" /></td>
+                                    <td><c:out value="${item.sserver}" /></td>
                                     <td><c:out value="${item.minLevel}" /></td>
                                     <td><c:out value="${item.minStatus}" /></td>
                                     <td><c:out value="${item.minForce}" /></td>
                                     <td>
-                                        <button type="submit" value="${item.leaderName}" id="btnMatching" name="leaderName">GO</button>
+                                        <button value="${item.leaderName}" id="btnMatching">GO</button>
                                     </td>
                                 </tr>
                         </c:forEach>
@@ -113,7 +130,7 @@
                     </c:otherwise>
                 </c:choose>
             </tbody>
-        </form>
+
         </table>
     </div>
 </body>

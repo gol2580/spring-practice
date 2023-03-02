@@ -5,11 +5,11 @@ import com.project.partyMatching.dto.SpecDTO;
 import com.project.partyMatching.service.matchingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,8 +33,13 @@ public class matchingController {
     }
 
     //http://localhost:8080/matching/matchingExec.do?leaderName=bv
-    @RequestMapping("matchingExec.do")
-    public ModelAndView matchingExec(@ModelAttribute SpecDTO dto) {
+    @ResponseBody
+    @RequestMapping(value="matchingExec.do", produces="application/json;charset=UTF-8", method=RequestMethod.POST)
+    public ModelAndView matchingExec(@RequestBody SpecDTO dto) {
+        try {
+            System.out.println(URLDecoder.decode(dto.getBossName(), "UTF-8"));
+            System.out.println(URLDecoder.decode(dto.getLeaderName(), "UTF-8"));
+        } catch (Exception e) {e.printStackTrace();}
         Map<String,Object> map = matchingService.matchingExec(dto);
         ModelAndView mav = new ModelAndView();
         if(map.get("userArray")!=null) {
