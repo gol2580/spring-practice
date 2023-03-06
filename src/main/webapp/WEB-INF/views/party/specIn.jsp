@@ -73,11 +73,11 @@
     <form name="specInForm" method="get" id="formDiv">
         <table class="formIn">
              <div class="formIn">보스 선택
-                  <input name="bossName" type="radio" value="루시드"/>루시드
-                  <input name="bossName" type="radio" value="데미안"/>데미안
-                  <input name="bossName" type="radio" value="듄켈"/>듄켈
-                  <input name="bossName" type="radio" value="윌"/>윌
-                  <input name="bossName" type="radio" value="힐라"/>힐라
+                  <input name="bossName" type="radio" value="lucid"/>루시드
+                  <input name="bossName" type="radio" value="demian"/>데미안
+                  <input name="bossName" type="radio" value="djunkel"/>듄켈
+                  <input name="bossName" type="radio" value="will"/>윌
+                  <input name="bossName" type="radio" value="hilla"/>힐라
               </div>
               <div class="formIn">파티원 수
                   <input name="numOfChar" type="number" min="1" max="3"/>

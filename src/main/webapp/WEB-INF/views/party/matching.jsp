@@ -68,12 +68,12 @@
                 dataType: 'json',
                 processData: false,
                 contentType:'application/json; charset:UTF-8',
+                async:false,
                 success: function () {
                     console.log("completed!");
                 },
-                error: function () {
-                    alert("failed! ")
-
+                error: function (request,error) {
+                    alert("error")
                 }
             });
 

@@ -22,19 +22,20 @@ public interface UserMapper {
     public void specIn(SpecDTO dto);
     public Map showSpec();
     //nickname list를 받음
-    public List getMatching_L(Map map);
-    public List getMatching_De(Map map);
-    public List getMatching_Du(Map map);
-    public List getMatching_W(Map map);
-    public List getMatching_H(Map map);
+    public String getMatching_L(Map map);
+    public String getMatching_De(Map map);
+    public String getMatching_Du(Map map);
+    public String getMatching_W(Map map);
+    public String getMatching_H(Map map);
 
-    public void updatePC_L(Map map);
-    public void updatePC_Du(Map map);
-    public void updatePC_De(Map map);
-    public void updatePC_W(Map map);
-    public void updatePC_H(Map map);
+    public void updatePC_L(partyDTO dto);
+    public void updatePC_Du(partyDTO dto);
+    public void updatePC_De(partyDTO dto);
+    public void updatePC_W(partyDTO dto);
+    public void updatePC_H(partyDTO dto);
 
     public void updateP(Map map);
 
-    public void getSpec(SpecDTO dto);
+    public String getSpec(SpecDTO dto);
+    public int getSpecNum(SpecDTO dto);
 }

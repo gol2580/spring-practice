@@ -41,6 +41,8 @@ public class matchingController {
             System.out.println(URLDecoder.decode(dto.getLeaderName(), "UTF-8"));
         } catch (Exception e) {e.printStackTrace();}
         Map<String,Object> map = matchingService.matchingExec(dto);
+        System.out.println("matching service success");
+        System.out.println(map);
         ModelAndView mav = new ModelAndView();
         if(map.get("userArray")!=null) {
             mav.addObject("leaderName",map.get("leaderName"));
@@ -49,7 +51,7 @@ public class matchingController {
             mav.addObject("userArray",map.get("userArray"));
             mav.addObject("success","success");
         } else {
-            mav.addObject("error","error");
+            mav.addObject("error","매칭되는 파티원이 없습니다.");
         }
         mav.setViewName("party/matching");
         return mav;

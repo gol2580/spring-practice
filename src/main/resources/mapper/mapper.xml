@@ -36,17 +36,21 @@
         FROM specification
     </select>
 
-    <select id="getSpec">
-        SELECT s.numOfChar, s.sserver
+    <select id="getSpec" resultType="String">
+        SELECT s.sserver
         FROM specification s
-        WHERE leaderName=#{leaderName} AND bossName=#{bossName}";
+        WHERE leaderName=#{leaderName} AND bossName=#{bossName};
+    </select>
 
-
+    <select id="getSpecNum" resultType="int">
+        SELECT s.numOfChar
+        FROM specification s
+        WHERE leaderName=#{leaderName} AND bossName=#{bossName};
     </select>
 
     <!--일단 dto에 leaderName, bossName, numOfChar 얻어냈다고 가정하고 쿼리작성-->
     <!--map의 key값으로 대응시키면 됨-->
-    <select id="getMatching_L" parameterType="Map" resultType="List">
+    <select id="getMatching_L" parameterType="Map" resultType="String">
         select e.nickname
         from ( select *
             from userchar u, specification s
@@ -56,9 +60,9 @@
             AND u.LEVEL >= s.minLevel
             AND u.ARCFORCE >=s.minForce ) a, char_party_ex e
         where e.nickname=a.nickname
-        AND e.party_L=\"0\" LIMIT ${numOfChar}
+        AND e.party_L="0" LIMIT #{numOfChar}
     </select>
-    <select id="getMatching_Du" parameterType="Map" resultType="List">
+    <select id="getMatching_Du" parameterType="Map" resultType="String">
         select e.nickname
         from ( select *
         from userchar u, specification s
@@ -68,9 +72,9 @@
         AND u.LEVEL >= s.minLevel
         AND u.ARCFORCE >=s.minForce ) a, char_party_ex e
         where e.nickname=a.nickname
-        AND e.party_Du=\"0\" LIMIT ${numOfChar}
+        AND e.party_Du="0" LIMIT #{numOfChar}
     </select>
-    <select id="getMatching_De" parameterType="Map" resultType="List">
+    <select id="getMatching_De" parameterType="Map" resultType="String">
         select e.nickname
         from ( select *
         from userchar u, specification s
@@ -80,9 +84,9 @@
         AND u.LEVEL >= s.minLevel
         AND u.ARCFORCE >=s.minForce ) a, char_party_ex e
         where e.nickname=a.nickname
-        AND e.party_De=\"0\" LIMIT ${numOfChar}
+        AND e.party_De="0" LIMIT #{numOfChar}
     </select>
-    <select id="getMatching_W" parameterType="Map" resultType="List">
+    <select id="getMatching_W" parameterType="Map" resultType="String">
         select e.nickname
         from ( select *
         from userchar u, specification s
@@ -92,9 +96,9 @@
         AND u.LEVEL >= s.minLevel
         AND u.ARCFORCE >=s.minForce ) a, char_party_ex e
         where e.nickname=a.nickname
-        AND e.party_W=\"0\" LIMIT ${numOfChar}
+        AND e.party_W="0" LIMIT #{numOfChar}
     </select>
-    <select id="getMatching_H" parameterType="Map" resultType="List">
+    <select id="getMatching_H" parameterType="Map" resultType="String">
         select e.nickname
         from ( select *
         from userchar u, specification s
@@ -104,46 +108,44 @@
         AND u.LEVEL >= s.minLevel
         AND u.ARCFORCE >=s.minForce ) a, char_party_ex e
         where e.nickname=a.nickname
-        AND e.party_H=\"0\" LIMIT ${numOfChar}
+        AND e.party_H="0" LIMIT #{numOfChar}
     </select>
     <!--party_L부분은 파티장이름, nickname은 각 파티원이름-->
     <select id="updatePC_L" parameterType="Map">
         <foreach collection="userArray" item="item" separator=";">
         UPDATE char_party_ex 
-        SET party_L=#{item.leaderName}
-        WHERE nickname=#{item.nickname}
+        SET party_L=#{leaderName}
+        WHERE nickname=#{item}
         </foreach>
     </select>
 
     <select id="updatePC_De" parameterType="Map">
         <foreach collection="userArray" item="item" separator=";">
             UPDATE char_party_ex
-            SET party_De=#{item.leaderName}
-            WHERE nickname=#{item.nickname}
+            SET party_De=#{leaderName}
+            WHERE nickname=#{item}
         </foreach>
     </select>
-    <select id="updatePC_Du" parameterType="Map">
-        <foreach collection="userArray" item="item" separator=";">
-            UPDATE char_party_ex
-            SET party_Du=#{item.leaderName}
-            WHERE nickname=#{item.nickname}
-        </foreach>
+
+    <select id="updatePC_Du" parameterType="com.project.partyMatching.dto.partyDTO">
+            UPDATE char_party_ex SET party_Du=#{leaderName} WHERE nickname=#{nickname}
     </select>
+
     <select id="updatePC_W" parameterType="Map">
         <foreach collection="userArray" item="item" separator=";">
             UPDATE char_party_ex
-            SET party_W=#{item.leaderName}
-            WHERE nickname=#{item.nickname}
+            SET party_W=#{leaderName}
+            WHERE nickname=#{item}
         </foreach>
     </select>
     <select id="updatePC_H" parameterType="Map">
         <foreach collection="userArray" item="item" separator=";">
             UPDATE char_party_ex
-            SET party_H=#{item.leaderName}
-            WHERE nickname=#{item.nickname}
+            SET party_H=#{leaderName}
+            WHERE nickname=#{item}
         </foreach>
     </select>
-    <select id="updateP" parameterType="Map">
-        insert into partytest values(#{leaderName},#{bossName},#{server})";
+    <select id="updateP" parameterType="java.util.Map">
+        insert into partytest values(#{leaderName},#{bossName},#{server});
     </select>
 </mapper>
